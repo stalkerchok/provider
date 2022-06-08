@@ -1,0 +1,42 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "ru.mirea",
+      "nativeLanguage": "ru"
+    },
+    "jhipsterVersion": "6.9.1",
+    "applicationType": "monolith",
+    "baseName": "provider",
+    "packageName": "ru.mirea",
+    "packageFolder": "ru/mirea",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "Njg1ZTIwNjgwMjZiMjUyZDUyZDNjNzBiM2UxYTc5N2EyNjJmM2I1NmM1MGZjOTA0MjZkM2VmMmM1YTk3ZjBhODg2ZTdkYTU3MTA2MmJjN2M0ZGEzMTg2YTIxZGFkMTkyYTdiNzU4ZDEzMWU5NThiZjQwNTkyZDQ1Njc1NDZhOGY=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1654723920632,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "ru",
+    "languages": ["ru", "en"],
+    "blueprints": []
+  }
+}
