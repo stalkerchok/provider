@@ -1,0 +1,23 @@
+{
+  "providerApp": {
+    "executorData": {
+      "home": {
+        "title": "Executor Data",
+        "createLabel": "Create a new Executor Data",
+        "createOrEditLabel": "Create or edit a Executor Data",
+        "notFound": "No Executor Data found"
+      },
+      "created": "A new Executor Data is created with identifier {{ param }}",
+      "updated": "A Executor Data is updated with identifier {{ param }}",
+      "deleted": "A Executor Data is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Executor Data {{ id }}?"
+      },
+      "detail": {
+        "title": "Executor Data"
+      },
+      "name": "Name",
+      "data": "Data"
+    }
+  }
+}

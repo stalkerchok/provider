@@ -59,6 +59,7 @@
             <column name="authority_name" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
+            <column name="end_date" type="timestamp"/>
         </createTable>
 
         <addPrimaryKey columnNames="user_id, authority_name" tableName="jhi_user_authority"/>

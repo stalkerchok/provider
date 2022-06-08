@@ -1,0 +1,23 @@
+{
+  "providerApp": {
+    "managerData": {
+      "home": {
+        "title": "Manager Data",
+        "createLabel": "Создать новый Manager Data",
+        "createOrEditLabel": "Создать или отредактировать Manager Data",
+        "notFound": "No Manager Data found"
+      },
+      "created": "Новый Manager Data создан с идентификатором {{ param }}",
+      "updated": "Manager Data обновлен с идентификатором {{ param }}",
+      "deleted": "Manager Data удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Manager Data {{ id }}?"
+      },
+      "detail": {
+        "title": "Manager Data"
+      },
+      "name": "Name",
+      "data": "Data"
+    }
+  }
+}
