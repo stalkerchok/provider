@@ -5,7 +5,6 @@ import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { TemporaryAccessService } from 'app/entities/temporary-access/temporary-access.service';
 import { ITemporaryAccess, TemporaryAccess } from 'app/shared/model/temporary-access.model';
 import { PermissionType } from 'app/shared/model/enumerations/permission-type.model';
-import { Role } from 'app/shared/model/enumerations/role.model';
 import { EntityClass } from 'app/shared/model/enumerations/entity-class.model';
 
 describe('Service Tests', () => {
@@ -27,7 +26,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new TemporaryAccess(0, 'AAAAAAA', currentDate, PermissionType.RO, Role.ROLE_ADMIN, EntityClass.MANAGER_DATA, 0);
+      elemDefault = new TemporaryAccess(0, 'AAAAAAA', currentDate, PermissionType.RO, EntityClass.MANAGER_DATA, 0);
     });
 
     describe('Service methods', () => {
@@ -75,7 +74,6 @@ describe('Service Tests', () => {
             login: 'BBBBBB',
             endDate: currentDate.format(DATE_FORMAT),
             permissionType: 'BBBBBB',
-            role: 'BBBBBB',
             entityClass: 'BBBBBB',
             entityId: 1,
           },
@@ -102,7 +100,6 @@ describe('Service Tests', () => {
             login: 'BBBBBB',
             endDate: currentDate.format(DATE_FORMAT),
             permissionType: 'BBBBBB',
-            role: 'BBBBBB',
             entityClass: 'BBBBBB',
             entityId: 1,
           },

@@ -27,7 +27,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import ru.mirea.domain.enumeration.PermissionType;
-import ru.mirea.domain.enumeration.Role;
 import ru.mirea.domain.enumeration.EntityClass;
 /**
  * Integration tests for the {@link TemporaryAccessResource} REST controller.
@@ -46,9 +45,6 @@ public class TemporaryAccessResourceIT {
 
     private static final PermissionType DEFAULT_PERMISSION_TYPE = PermissionType.RO;
     private static final PermissionType UPDATED_PERMISSION_TYPE = PermissionType.RW;
-
-    private static final Role DEFAULT_ROLE = Role.ROLE_ADMIN;
-    private static final Role UPDATED_ROLE = Role.ROLE_MANAGER;
 
     private static final EntityClass DEFAULT_ENTITY_CLASS = EntityClass.MANAGER_DATA;
     private static final EntityClass UPDATED_ENTITY_CLASS = EntityClass.EXECUTOR_DATA;
@@ -85,7 +81,6 @@ public class TemporaryAccessResourceIT {
             .login(DEFAULT_LOGIN)
             .endDate(DEFAULT_END_DATE)
             .permissionType(DEFAULT_PERMISSION_TYPE)
-            .role(DEFAULT_ROLE)
             .entityClass(DEFAULT_ENTITY_CLASS)
             .entityId(DEFAULT_ENTITY_ID);
         return temporaryAccess;
@@ -101,7 +96,6 @@ public class TemporaryAccessResourceIT {
             .login(UPDATED_LOGIN)
             .endDate(UPDATED_END_DATE)
             .permissionType(UPDATED_PERMISSION_TYPE)
-            .role(UPDATED_ROLE)
             .entityClass(UPDATED_ENTITY_CLASS)
             .entityId(UPDATED_ENTITY_ID);
         return temporaryAccess;
@@ -129,7 +123,6 @@ public class TemporaryAccessResourceIT {
         assertThat(testTemporaryAccess.getLogin()).isEqualTo(DEFAULT_LOGIN);
         assertThat(testTemporaryAccess.getEndDate()).isEqualTo(DEFAULT_END_DATE);
         assertThat(testTemporaryAccess.getPermissionType()).isEqualTo(DEFAULT_PERMISSION_TYPE);
-        assertThat(testTemporaryAccess.getRole()).isEqualTo(DEFAULT_ROLE);
         assertThat(testTemporaryAccess.getEntityClass()).isEqualTo(DEFAULT_ENTITY_CLASS);
         assertThat(testTemporaryAccess.getEntityId()).isEqualTo(DEFAULT_ENTITY_ID);
     }
@@ -168,7 +161,6 @@ public class TemporaryAccessResourceIT {
             .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN)))
             .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())))
             .andExpect(jsonPath("$.[*].permissionType").value(hasItem(DEFAULT_PERMISSION_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].role").value(hasItem(DEFAULT_ROLE.toString())))
             .andExpect(jsonPath("$.[*].entityClass").value(hasItem(DEFAULT_ENTITY_CLASS.toString())))
             .andExpect(jsonPath("$.[*].entityId").value(hasItem(DEFAULT_ENTITY_ID.intValue())));
     }
@@ -187,7 +179,6 @@ public class TemporaryAccessResourceIT {
             .andExpect(jsonPath("$.login").value(DEFAULT_LOGIN))
             .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()))
             .andExpect(jsonPath("$.permissionType").value(DEFAULT_PERMISSION_TYPE.toString()))
-            .andExpect(jsonPath("$.role").value(DEFAULT_ROLE.toString()))
             .andExpect(jsonPath("$.entityClass").value(DEFAULT_ENTITY_CLASS.toString()))
             .andExpect(jsonPath("$.entityId").value(DEFAULT_ENTITY_ID.intValue()));
     }
@@ -449,58 +440,6 @@ public class TemporaryAccessResourceIT {
 
     @Test
     @Transactional
-    public void getAllTemporaryAccessesByRoleIsEqualToSomething() throws Exception {
-        // Initialize the database
-        temporaryAccessRepository.saveAndFlush(temporaryAccess);
-
-        // Get all the temporaryAccessList where role equals to DEFAULT_ROLE
-        defaultTemporaryAccessShouldBeFound("role.equals=" + DEFAULT_ROLE);
-
-        // Get all the temporaryAccessList where role equals to UPDATED_ROLE
-        defaultTemporaryAccessShouldNotBeFound("role.equals=" + UPDATED_ROLE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllTemporaryAccessesByRoleIsNotEqualToSomething() throws Exception {
-        // Initialize the database
-        temporaryAccessRepository.saveAndFlush(temporaryAccess);
-
-        // Get all the temporaryAccessList where role not equals to DEFAULT_ROLE
-        defaultTemporaryAccessShouldNotBeFound("role.notEquals=" + DEFAULT_ROLE);
-
-        // Get all the temporaryAccessList where role not equals to UPDATED_ROLE
-        defaultTemporaryAccessShouldBeFound("role.notEquals=" + UPDATED_ROLE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllTemporaryAccessesByRoleIsInShouldWork() throws Exception {
-        // Initialize the database
-        temporaryAccessRepository.saveAndFlush(temporaryAccess);
-
-        // Get all the temporaryAccessList where role in DEFAULT_ROLE or UPDATED_ROLE
-        defaultTemporaryAccessShouldBeFound("role.in=" + DEFAULT_ROLE + "," + UPDATED_ROLE);
-
-        // Get all the temporaryAccessList where role equals to UPDATED_ROLE
-        defaultTemporaryAccessShouldNotBeFound("role.in=" + UPDATED_ROLE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllTemporaryAccessesByRoleIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        temporaryAccessRepository.saveAndFlush(temporaryAccess);
-
-        // Get all the temporaryAccessList where role is not null
-        defaultTemporaryAccessShouldBeFound("role.specified=true");
-
-        // Get all the temporaryAccessList where role is null
-        defaultTemporaryAccessShouldNotBeFound("role.specified=false");
-    }
-
-    @Test
-    @Transactional
     public void getAllTemporaryAccessesByEntityClassIsEqualToSomething() throws Exception {
         // Initialize the database
         temporaryAccessRepository.saveAndFlush(temporaryAccess);
@@ -666,7 +605,6 @@ public class TemporaryAccessResourceIT {
             .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN)))
             .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())))
             .andExpect(jsonPath("$.[*].permissionType").value(hasItem(DEFAULT_PERMISSION_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].role").value(hasItem(DEFAULT_ROLE.toString())))
             .andExpect(jsonPath("$.[*].entityClass").value(hasItem(DEFAULT_ENTITY_CLASS.toString())))
             .andExpect(jsonPath("$.[*].entityId").value(hasItem(DEFAULT_ENTITY_ID.intValue())));
 
@@ -718,7 +656,6 @@ public class TemporaryAccessResourceIT {
             .login(UPDATED_LOGIN)
             .endDate(UPDATED_END_DATE)
             .permissionType(UPDATED_PERMISSION_TYPE)
-            .role(UPDATED_ROLE)
             .entityClass(UPDATED_ENTITY_CLASS)
             .entityId(UPDATED_ENTITY_ID);
 
@@ -734,7 +671,6 @@ public class TemporaryAccessResourceIT {
         assertThat(testTemporaryAccess.getLogin()).isEqualTo(UPDATED_LOGIN);
         assertThat(testTemporaryAccess.getEndDate()).isEqualTo(UPDATED_END_DATE);
         assertThat(testTemporaryAccess.getPermissionType()).isEqualTo(UPDATED_PERMISSION_TYPE);
-        assertThat(testTemporaryAccess.getRole()).isEqualTo(UPDATED_ROLE);
         assertThat(testTemporaryAccess.getEntityClass()).isEqualTo(UPDATED_ENTITY_CLASS);
         assertThat(testTemporaryAccess.getEntityId()).isEqualTo(UPDATED_ENTITY_ID);
     }

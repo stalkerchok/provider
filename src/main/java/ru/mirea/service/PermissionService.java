@@ -16,6 +16,7 @@ import ru.mirea.service.dto.ManagerDataCriteria;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class PermissionService {
@@ -108,35 +109,26 @@ public class PermissionService {
 
     private Boolean isManagerDataRoleAccessRo() {
         return getCurrentUserRoles()
-            .stream().anyMatch(role -> applicationProperties.getManagerDataAccessRo().contains(role));
+            .anyMatch(role -> applicationProperties.getManagerDataAccessRo().contains(role));
     }
 
     private Boolean isManagerDataRoleAccessRw() {
         return getCurrentUserRoles()
-            .stream().anyMatch(role -> applicationProperties.getManagerDataAccessRw().contains(role));
+            .anyMatch(role -> applicationProperties.getManagerDataAccessRw().contains(role));
     }
 
     private Boolean isExecutorDataRoleAccessRo() {
         return getCurrentUserRoles()
-            .stream().anyMatch(role -> applicationProperties.getExecutorDataAccessRo().contains(role));
+            .anyMatch(role -> applicationProperties.getExecutorDataAccessRo().contains(role));
     }
 
     private Boolean isExecutorDataRoleAccessRw() {
         return getCurrentUserRoles()
-            .stream().anyMatch(role -> applicationProperties.getExecutorDataAccessRw().contains(role));
+            .anyMatch(role -> applicationProperties.getExecutorDataAccessRw().contains(role));
     }
 
-    private List<String> getCurrentUserRoles() {
-        String login = SecurityUtils.getCurrentUserLogin().orElse(null);
-        LocalDate currentDate = LocalDate.now();
-        List<String> userRoles =
-            temporaryAccessRepository.findAllByLoginAndRoleIsNotNull(login)
-                .stream()
-                .filter(temporaryAccess -> temporaryAccess.getEndDate() == null || !temporaryAccess.getEndDate().isBefore(currentDate))
-                .map(temporaryAccess -> temporaryAccess.getRole().toString())
-                .collect(Collectors.toList());
-        userRoles.addAll(SecurityUtils.getCurrentUserRoles().collect(Collectors.toList()));
-        return userRoles;
+    private Stream<String> getCurrentUserRoles() {
+        return SecurityUtils.getCurrentUserRoles();
     }
 
     private boolean isTemporaryAccessRo(EntityClass entityClass, Long entityId, String login) {

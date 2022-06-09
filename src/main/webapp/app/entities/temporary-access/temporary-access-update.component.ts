@@ -21,7 +21,6 @@ export class TemporaryAccessUpdateComponent implements OnInit {
     login: [],
     endDate: [],
     permissionType: [],
-    role: [],
     entityClass: [],
     entityId: [],
   });
@@ -44,7 +43,6 @@ export class TemporaryAccessUpdateComponent implements OnInit {
       login: temporaryAccess.login,
       endDate: temporaryAccess.endDate,
       permissionType: temporaryAccess.permissionType,
-      role: temporaryAccess.role,
       entityClass: temporaryAccess.entityClass,
       entityId: temporaryAccess.entityId,
     });
@@ -71,7 +69,6 @@ export class TemporaryAccessUpdateComponent implements OnInit {
       login: this.editForm.get(['login'])!.value,
       endDate: this.editForm.get(['endDate'])!.value,
       permissionType: this.editForm.get(['permissionType'])!.value,
-      role: this.editForm.get(['role'])!.value,
       entityClass: this.editForm.get(['entityClass'])!.value,
       entityId: this.editForm.get(['entityId'])!.value,
     };

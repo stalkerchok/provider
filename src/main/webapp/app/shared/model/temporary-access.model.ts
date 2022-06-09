@@ -1,6 +1,5 @@
 import { Moment } from 'moment';
 import { PermissionType } from 'app/shared/model/enumerations/permission-type.model';
-import { Role } from 'app/shared/model/enumerations/role.model';
 import { EntityClass } from 'app/shared/model/enumerations/entity-class.model';
 
 export interface ITemporaryAccess {
@@ -8,7 +7,6 @@ export interface ITemporaryAccess {
   login?: string;
   endDate?: Moment;
   permissionType?: PermissionType;
-  role?: Role;
   entityClass?: EntityClass;
   entityId?: number;
 }
@@ -19,7 +17,6 @@ export class TemporaryAccess implements ITemporaryAccess {
     public login?: string,
     public endDate?: Moment,
     public permissionType?: PermissionType,
-    public role?: Role,
     public entityClass?: EntityClass,
     public entityId?: number
   ) {}

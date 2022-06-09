@@ -94,9 +94,6 @@ public class TemporaryAccessQueryService extends QueryService<TemporaryAccess> {
             if (criteria.getPermissionType() != null) {
                 specification = specification.and(buildSpecification(criteria.getPermissionType(), TemporaryAccess_.permissionType));
             }
-            if (criteria.getRole() != null) {
-                specification = specification.and(buildSpecification(criteria.getRole(), TemporaryAccess_.role));
-            }
             if (criteria.getEntityClass() != null) {
                 specification = specification.and(buildSpecification(criteria.getEntityClass(), TemporaryAccess_.entityClass));
             }

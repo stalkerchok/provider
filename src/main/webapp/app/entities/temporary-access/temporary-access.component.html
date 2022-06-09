@@ -26,7 +26,6 @@
                     <th scope="col"  jhiSortBy="login"><span jhiTranslate="providerApp.temporaryAccess.login">Login</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="endDate"><span jhiTranslate="providerApp.temporaryAccess.endDate">End Date</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="permissionType"><span jhiTranslate="providerApp.temporaryAccess.permissionType">Permission Type</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="role"><span jhiTranslate="providerApp.temporaryAccess.role">Role</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="entityClass"><span jhiTranslate="providerApp.temporaryAccess.entityClass">Entity Class</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="entityId"><span jhiTranslate="providerApp.temporaryAccess.entityId">Entity Id</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
@@ -38,7 +37,6 @@
                     <td>{{ temporaryAccess.login }}</td>
                     <td>{{ temporaryAccess.endDate | date:'mediumDate' }}</td>
                     <td jhiTranslate="{{ 'providerApp.PermissionType.' + temporaryAccess.permissionType }}">{{ temporaryAccess.permissionType }}</td>
-                    <td jhiTranslate="{{ 'providerApp.Role.' + temporaryAccess.role }}">{{ temporaryAccess.role }}</td>
                     <td jhiTranslate="{{ 'providerApp.EntityClass.' + temporaryAccess.entityClass }}">{{ temporaryAccess.entityClass }}</td>
                     <td>{{ temporaryAccess.entityId }}</td>
                     <td class="text-right">

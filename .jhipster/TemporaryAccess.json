@@ -15,11 +15,6 @@
       "fieldValues": "RO,RW"
     },
     {
-      "fieldName": "role",
-      "fieldType": "Role",
-      "fieldValues": "ROLE_ADMIN,ROLE_MANAGER,ROLE_EXECUTOR"
-    },
-    {
       "fieldName": "entityClass",
       "fieldType": "EntityClass",
       "fieldValues": "MANAGER_DATA,EXECUTOR_DATA"
@@ -40,5 +35,7 @@
   "readOnly": false,
   "embedded": false,
   "clientRootFolder": "",
-  "applications": "*"
+  "applications": "*",
+  "searchEngine": false,
+  "databaseType": "sql"
 }

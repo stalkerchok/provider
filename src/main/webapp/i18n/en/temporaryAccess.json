@@ -19,7 +19,6 @@
       "login": "Login",
       "endDate": "End Date",
       "permissionType": "Permission Type",
-      "role": "Role",
       "entityClass": "Entity Class",
       "entityId": "Entity Id"
     }

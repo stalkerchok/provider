@@ -24,9 +24,6 @@
             <column name="permission_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="role" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
             <column name="entity_class" type="varchar(255)">
                 <constraints nullable="true" />
             </column>

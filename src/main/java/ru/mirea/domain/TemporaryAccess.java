@@ -8,8 +8,6 @@ import java.time.LocalDate;
 
 import ru.mirea.domain.enumeration.PermissionType;
 
-import ru.mirea.domain.enumeration.Role;
-
 import ru.mirea.domain.enumeration.EntityClass;
 
 /**
@@ -35,10 +33,6 @@ public class TemporaryAccess implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "permission_type")
     private PermissionType permissionType;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    private Role role;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "entity_class")
@@ -95,19 +89,6 @@ public class TemporaryAccess implements Serializable {
         this.permissionType = permissionType;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public TemporaryAccess role(Role role) {
-        this.role = role;
-        return this;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
     public EntityClass getEntityClass() {
         return entityClass;
     }
@@ -159,7 +140,6 @@ public class TemporaryAccess implements Serializable {
             ", login='" + getLogin() + "'" +
             ", endDate='" + getEndDate() + "'" +
             ", permissionType='" + getPermissionType() + "'" +
-            ", role='" + getRole() + "'" +
             ", entityClass='" + getEntityClass() + "'" +
             ", entityId=" + getEntityId() +
             "}";

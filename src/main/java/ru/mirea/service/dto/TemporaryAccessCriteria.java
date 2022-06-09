@@ -44,24 +44,6 @@ public class TemporaryAccessCriteria implements Serializable, Criteria {
 
     }
     /**
-     * Class for filtering Role
-     */
-    public static class RoleFilter extends Filter<Role> {
-
-        public RoleFilter() {
-        }
-
-        public RoleFilter(RoleFilter filter) {
-            super(filter);
-        }
-
-        @Override
-        public RoleFilter copy() {
-            return new RoleFilter(this);
-        }
-
-    }
-    /**
      * Class for filtering EntityClass
      */
     public static class EntityClassFilter extends Filter<EntityClass> {
@@ -90,8 +72,6 @@ public class TemporaryAccessCriteria implements Serializable, Criteria {
 
     private PermissionTypeFilter permissionType;
 
-    private RoleFilter role;
-
     private EntityClassFilter entityClass;
 
     private LongFilter entityId;
@@ -104,7 +84,6 @@ public class TemporaryAccessCriteria implements Serializable, Criteria {
         this.login = other.login == null ? null : other.login.copy();
         this.endDate = other.endDate == null ? null : other.endDate.copy();
         this.permissionType = other.permissionType == null ? null : other.permissionType.copy();
-        this.role = other.role == null ? null : other.role.copy();
         this.entityClass = other.entityClass == null ? null : other.entityClass.copy();
         this.entityId = other.entityId == null ? null : other.entityId.copy();
     }
@@ -146,14 +125,6 @@ public class TemporaryAccessCriteria implements Serializable, Criteria {
         this.permissionType = permissionType;
     }
 
-    public RoleFilter getRole() {
-        return role;
-    }
-
-    public void setRole(RoleFilter role) {
-        this.role = role;
-    }
-
     public EntityClassFilter getEntityClass() {
         return entityClass;
     }
@@ -185,7 +156,6 @@ public class TemporaryAccessCriteria implements Serializable, Criteria {
             Objects.equals(login, that.login) &&
             Objects.equals(endDate, that.endDate) &&
             Objects.equals(permissionType, that.permissionType) &&
-            Objects.equals(role, that.role) &&
             Objects.equals(entityClass, that.entityClass) &&
             Objects.equals(entityId, that.entityId);
     }
@@ -197,7 +167,6 @@ public class TemporaryAccessCriteria implements Serializable, Criteria {
         login,
         endDate,
         permissionType,
-        role,
         entityClass,
         entityId
         );
@@ -211,7 +180,6 @@ public class TemporaryAccessCriteria implements Serializable, Criteria {
                 (login != null ? "login=" + login + ", " : "") +
                 (endDate != null ? "endDate=" + endDate + ", " : "") +
                 (permissionType != null ? "permissionType=" + permissionType + ", " : "") +
-                (role != null ? "role=" + role + ", " : "") +
                 (entityClass != null ? "entityClass=" + entityClass + ", " : "") +
                 (entityId != null ? "entityId=" + entityId + ", " : "") +
             "}";
