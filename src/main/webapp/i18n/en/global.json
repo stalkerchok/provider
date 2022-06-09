@@ -9,7 +9,6 @@
         "main": "Entities",
         "managerData": "Manager Data",
         "executorData": "Executor Data",
-        "temporaryAccess": "Temporary Access",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -24,6 +23,7 @@
       "admin": {
         "main": "Administration",
         "userManagement": "User management",
+        "temporaryAccess": "Temporary Access",
         "tracker": "User tracker",
         "metrics": "Metrics",
         "health": "Health",

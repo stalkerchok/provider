@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
 import { ProviderTestModule } from '../../../test.module';
-import { TemporaryAccessDetailComponent } from 'app/entities/temporary-access/temporary-access-detail.component';
+import { TemporaryAccessDetailComponent } from 'app/admin/temporary-access/temporary-access-detail.component';
 import { TemporaryAccess } from 'app/shared/model/temporary-access.model';
 
 describe('Component Tests', () => {

@@ -4,8 +4,8 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 
 import { ProviderTestModule } from '../../../test.module';
-import { TemporaryAccessComponent } from 'app/entities/temporary-access/temporary-access.component';
-import { TemporaryAccessService } from 'app/entities/temporary-access/temporary-access.service';
+import { TemporaryAccessComponent } from 'app/admin/temporary-access/temporary-access.component';
+import { TemporaryAccessService } from 'app/admin/temporary-access/temporary-access.service';
 import { TemporaryAccess } from 'app/shared/model/temporary-access.model';
 
 describe('Component Tests', () => {

@@ -6,8 +6,8 @@ import { JhiEventManager } from 'ng-jhipster';
 import { ProviderTestModule } from '../../../test.module';
 import { MockEventManager } from '../../../helpers/mock-event-manager.service';
 import { MockActiveModal } from '../../../helpers/mock-active-modal.service';
-import { TemporaryAccessDeleteDialogComponent } from 'app/entities/temporary-access/temporary-access-delete-dialog.component';
-import { TemporaryAccessService } from 'app/entities/temporary-access/temporary-access.service';
+import { TemporaryAccessDeleteDialogComponent } from 'app/admin/temporary-access/temporary-access-delete-dialog.component';
+import { TemporaryAccessService } from 'app/admin/temporary-access/temporary-access.service';
 
 describe('Component Tests', () => {
   describe('TemporaryAccess Management Delete Component', () => {
