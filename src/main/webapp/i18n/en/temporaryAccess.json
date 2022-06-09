@@ -1,0 +1,27 @@
+{
+  "providerApp": {
+    "temporaryAccess": {
+      "home": {
+        "title": "Temporary Accesses",
+        "createLabel": "Create a new Temporary Access",
+        "createOrEditLabel": "Create or edit a Temporary Access",
+        "notFound": "No Temporary Accesses found"
+      },
+      "created": "A new Temporary Access is created with identifier {{ param }}",
+      "updated": "A Temporary Access is updated with identifier {{ param }}",
+      "deleted": "A Temporary Access is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Temporary Access {{ id }}?"
+      },
+      "detail": {
+        "title": "Temporary Access"
+      },
+      "login": "Login",
+      "endDate": "End Date",
+      "permissionType": "Permission Type",
+      "role": "Role",
+      "entityClass": "Entity Class",
+      "entityId": "Entity Id"
+    }
+  }
+}

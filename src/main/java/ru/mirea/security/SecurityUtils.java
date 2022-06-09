@@ -77,6 +77,11 @@ public final class SecurityUtils {
             getAuthorities(authentication).anyMatch(authority::equals);
     }
 
+    public static Stream<String> getCurrentUserRoles() {
+        return getAuthorities(SecurityContextHolder.getContext().getAuthentication())
+            .filter(authority -> authority.startsWith("ROLE_"));
+    }
+
     private static Stream<String> getAuthorities(Authentication authentication) {
         return authentication.getAuthorities().stream()
             .map(GrantedAuthority::getAuthority);

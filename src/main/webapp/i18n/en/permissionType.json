@@ -1,0 +1,9 @@
+{
+  "providerApp": {
+    "PermissionType": {
+      "null": "",
+      "RO": "RO",
+      "RW": "RW"
+    }
+  }
+}

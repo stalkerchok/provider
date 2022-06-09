@@ -91,6 +91,9 @@ public class ManagerDataQueryService extends QueryService<ManagerData> {
             if (criteria.getData() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getData(), ManagerData_.data));
             }
+            if (criteria.getPermissionId() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getPermissionId(), ManagerData_.id));
+            }
         }
         return specification;
     }

@@ -1,7 +1,9 @@
 package ru.mirea.web.rest;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import ru.mirea.domain.ExecutorData;
 import ru.mirea.service.ExecutorDataService;
+import ru.mirea.service.PermissionService;
 import ru.mirea.web.rest.errors.BadRequestAlertException;
 import ru.mirea.service.dto.ExecutorDataCriteria;
 import ru.mirea.service.ExecutorDataQueryService;
@@ -15,7 +17,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,9 +44,14 @@ public class ExecutorDataResource {
 
     private final ExecutorDataQueryService executorDataQueryService;
 
-    public ExecutorDataResource(ExecutorDataService executorDataService, ExecutorDataQueryService executorDataQueryService) {
+    private final PermissionService permissionService;
+
+    public ExecutorDataResource(ExecutorDataService executorDataService,
+                                ExecutorDataQueryService executorDataQueryService,
+                                PermissionService permissionService) {
         this.executorDataService = executorDataService;
         this.executorDataQueryService = executorDataQueryService;
+        this.permissionService = permissionService;
     }
 
     /**
@@ -55,6 +61,7 @@ public class ExecutorDataResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new executorData, or with status {@code 400 (Bad Request)} if the executorData has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
+    @PreAuthorize("@permissionService.hasExecutorDataRwAccess(#executorData)")
     @PostMapping("/executor-data")
     public ResponseEntity<ExecutorData> createExecutorData(@RequestBody ExecutorData executorData) throws URISyntaxException {
         log.debug("REST request to save ExecutorData : {}", executorData);
@@ -76,6 +83,7 @@ public class ExecutorDataResource {
      * or with status {@code 500 (Internal Server Error)} if the executorData couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
+    @PreAuthorize("@permissionService.hasExecutorDataRwAccess(#executorData)")
     @PutMapping("/executor-data")
     public ResponseEntity<ExecutorData> updateExecutorData(@RequestBody ExecutorData executorData) throws URISyntaxException {
         log.debug("REST request to update ExecutorData : {}", executorData);
@@ -98,6 +106,8 @@ public class ExecutorDataResource {
     @GetMapping("/executor-data")
     public ResponseEntity<List<ExecutorData>> getAllExecutorData(ExecutorDataCriteria criteria, Pageable pageable) {
         log.debug("REST request to get ExecutorData by criteria: {}", criteria);
+        criteria = permissionService.limitAccess(criteria);
+        log.debug("criteria after limit access: {}", criteria);
         Page<ExecutorData> page = executorDataQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -112,6 +122,8 @@ public class ExecutorDataResource {
     @GetMapping("/executor-data/count")
     public ResponseEntity<Long> countExecutorData(ExecutorDataCriteria criteria) {
         log.debug("REST request to count ExecutorData by criteria: {}", criteria);
+        criteria = permissionService.limitAccess(criteria);
+        log.debug("criteria after limit access: {}", criteria);
         return ResponseEntity.ok().body(executorDataQueryService.countByCriteria(criteria));
     }
 
@@ -121,6 +133,7 @@ public class ExecutorDataResource {
      * @param id the id of the executorData to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the executorData, or with status {@code 404 (Not Found)}.
      */
+    @PreAuthorize("@permissionService.hasExecutorDataRoAccess(#id)")
     @GetMapping("/executor-data/{id}")
     public ResponseEntity<ExecutorData> getExecutorData(@PathVariable Long id) {
         log.debug("REST request to get ExecutorData : {}", id);
@@ -134,6 +147,7 @@ public class ExecutorDataResource {
      * @param id the id of the executorData to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
+    @PreAuthorize("@permissionService.hasExecutorDataRwAccess(#id)")
     @DeleteMapping("/executor-data/{id}")
     public ResponseEntity<Void> deleteExecutorData(@PathVariable Long id) {
         log.debug("REST request to delete ExecutorData : {}", id);

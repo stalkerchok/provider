@@ -1,0 +1,81 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="providerApp.temporaryAccess.home.title">Temporary Accesses</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-temporary-access" [routerLink]="['/temporary-access/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="providerApp.temporaryAccess.home.createLabel">
+            Create a new Temporary Access
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="temporaryAccesses?.length === 0">
+        <span jhiTranslate="providerApp.temporaryAccess.home.notFound">No temporaryAccesses found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="temporaryAccesses && temporaryAccesses.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="login"><span jhiTranslate="providerApp.temporaryAccess.login">Login</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="endDate"><span jhiTranslate="providerApp.temporaryAccess.endDate">End Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="permissionType"><span jhiTranslate="providerApp.temporaryAccess.permissionType">Permission Type</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="role"><span jhiTranslate="providerApp.temporaryAccess.role">Role</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="entityClass"><span jhiTranslate="providerApp.temporaryAccess.entityClass">Entity Class</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="entityId"><span jhiTranslate="providerApp.temporaryAccess.entityId">Entity Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let temporaryAccess of temporaryAccesses ;trackBy: trackId">
+                    <td><a [routerLink]="['/temporary-access', temporaryAccess.id, 'view']">{{ temporaryAccess.id }}</a></td>
+                    <td>{{ temporaryAccess.login }}</td>
+                    <td>{{ temporaryAccess.endDate | date:'mediumDate' }}</td>
+                    <td jhiTranslate="{{ 'providerApp.PermissionType.' + temporaryAccess.permissionType }}">{{ temporaryAccess.permissionType }}</td>
+                    <td jhiTranslate="{{ 'providerApp.Role.' + temporaryAccess.role }}">{{ temporaryAccess.role }}</td>
+                    <td jhiTranslate="{{ 'providerApp.EntityClass.' + temporaryAccess.entityClass }}">{{ temporaryAccess.entityClass }}</td>
+                    <td>{{ temporaryAccess.entityId }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/temporary-access', temporaryAccess.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/temporary-access', temporaryAccess.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(temporaryAccess)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="temporaryAccesses && temporaryAccesses.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

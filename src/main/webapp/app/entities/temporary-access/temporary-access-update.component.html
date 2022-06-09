@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-temporary-access-heading" jhiTranslate="providerApp.temporaryAccess.home.createOrEditLabel">Create or edit a Temporary Access</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="providerApp.temporaryAccess.login" for="field_login">Login</label>
+                    <input type="text" class="form-control" name="login" id="field_login"
+                           formControlName="login"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="providerApp.temporaryAccess.endDate" for="field_endDate">End Date</label>
+                    <div class="input-group">
+                        <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker #endDateDp="ngbDatepicker" formControlName="endDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="endDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="providerApp.temporaryAccess.permissionType" for="field_permissionType">Permission Type</label>
+                    <select class="form-control" name="permissionType" formControlName="permissionType" id="field_permissionType">
+                        <option value="RO">{{ 'providerApp.PermissionType.RO' | translate }}</option>
+                        <option value="RW">{{ 'providerApp.PermissionType.RW' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="providerApp.temporaryAccess.role" for="field_role">Role</label>
+                    <select class="form-control" name="role" formControlName="role" id="field_role">
+                        <option value="ROLE_ADMIN">{{ 'providerApp.Role.ROLE_ADMIN' | translate }}</option>
+                        <option value="ROLE_MANAGER">{{ 'providerApp.Role.ROLE_MANAGER' | translate }}</option>
+                        <option value="ROLE_EXECUTOR">{{ 'providerApp.Role.ROLE_EXECUTOR' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="providerApp.temporaryAccess.entityClass" for="field_entityClass">Entity Class</label>
+                    <select class="form-control" name="entityClass" formControlName="entityClass" id="field_entityClass">
+                        <option value="MANAGER_DATA">{{ 'providerApp.EntityClass.MANAGER_DATA' | translate }}</option>
+                        <option value="EXECUTOR_DATA">{{ 'providerApp.EntityClass.EXECUTOR_DATA' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="providerApp.temporaryAccess.entityId" for="field_entityId">Entity Id</label>
+                    <input type="number" class="form-control" name="entityId" id="field_entityId"
+                           formControlName="entityId"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

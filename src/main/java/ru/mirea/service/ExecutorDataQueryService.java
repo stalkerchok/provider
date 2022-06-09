@@ -91,6 +91,9 @@ public class ExecutorDataQueryService extends QueryService<ExecutorData> {
             if (criteria.getData() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getData(), ExecutorData_.data));
             }
+            if (criteria.getPermissionId() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getPermissionId(), ExecutorData_.id));
+            }
         }
         return specification;
     }

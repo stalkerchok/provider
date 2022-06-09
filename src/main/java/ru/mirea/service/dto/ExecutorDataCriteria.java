@@ -30,6 +30,8 @@ public class ExecutorDataCriteria implements Serializable, Criteria {
 
     private StringFilter data;
 
+    private LongFilter permissionId;
+
     public ExecutorDataCriteria() {
     }
 
@@ -37,6 +39,7 @@ public class ExecutorDataCriteria implements Serializable, Criteria {
         this.id = other.id == null ? null : other.id.copy();
         this.name = other.name == null ? null : other.name.copy();
         this.data = other.data == null ? null : other.data.copy();
+        this.permissionId = other.permissionId == null ? null : other.permissionId.copy();
     }
 
     @Override
@@ -68,6 +71,13 @@ public class ExecutorDataCriteria implements Serializable, Criteria {
         this.data = data;
     }
 
+    public LongFilter getPermissionId() {
+        return permissionId;
+    }
+
+    public void setPermissionId(LongFilter permissionId) {
+        this.permissionId = permissionId;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -81,7 +91,8 @@ public class ExecutorDataCriteria implements Serializable, Criteria {
         return
             Objects.equals(id, that.id) &&
             Objects.equals(name, that.name) &&
-            Objects.equals(data, that.data);
+            Objects.equals(data, that.data) &&
+            Objects.equals(permissionId, that.permissionId);
     }
 
     @Override
@@ -89,7 +100,8 @@ public class ExecutorDataCriteria implements Serializable, Criteria {
         return Objects.hash(
         id,
         name,
-        data
+        data,
+        permissionId
         );
     }
 
@@ -100,6 +112,7 @@ public class ExecutorDataCriteria implements Serializable, Criteria {
                 (id != null ? "id=" + id + ", " : "") +
                 (name != null ? "name=" + name + ", " : "") +
                 (data != null ? "data=" + data + ", " : "") +
+                (permissionId != null ? "permissionId=" + permissionId + ", " : "") +
             "}";
     }
 

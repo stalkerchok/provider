@@ -126,4 +126,8 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+application:
+  manager-data-access-rw: ROLE_MANAGER, ROLE_ADMIN
+  manager-data-access-ro: ROLE_MANAGER, ROLE_ADMIN
+  executor-data-access-rw: ROLE_EXECUTOR, ROLE_MANAGER, ROLE_ADMIN
+  executor-data-access-ro: ROLE_EXECUTOR, ROLE_MANAGER, ROLE_ADMIN

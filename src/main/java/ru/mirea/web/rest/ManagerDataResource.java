@@ -1,7 +1,9 @@
 package ru.mirea.web.rest;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import ru.mirea.domain.ManagerData;
 import ru.mirea.service.ManagerDataService;
+import ru.mirea.service.PermissionService;
 import ru.mirea.web.rest.errors.BadRequestAlertException;
 import ru.mirea.service.dto.ManagerDataCriteria;
 import ru.mirea.service.ManagerDataQueryService;
@@ -15,7 +17,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,9 +44,14 @@ public class ManagerDataResource {
 
     private final ManagerDataQueryService managerDataQueryService;
 
-    public ManagerDataResource(ManagerDataService managerDataService, ManagerDataQueryService managerDataQueryService) {
+    private final PermissionService permissionService;
+
+    public ManagerDataResource(ManagerDataService managerDataService,
+                               ManagerDataQueryService managerDataQueryService,
+                               PermissionService permissionService) {
         this.managerDataService = managerDataService;
         this.managerDataQueryService = managerDataQueryService;
+        this.permissionService = permissionService;
     }
 
     /**
@@ -55,6 +61,7 @@ public class ManagerDataResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new managerData, or with status {@code 400 (Bad Request)} if the managerData has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
+    @PreAuthorize("@permissionService.hasManagerDataRwAccess(#managerData)")
     @PostMapping("/manager-data")
     public ResponseEntity<ManagerData> createManagerData(@RequestBody ManagerData managerData) throws URISyntaxException {
         log.debug("REST request to save ManagerData : {}", managerData);
@@ -76,6 +83,7 @@ public class ManagerDataResource {
      * or with status {@code 500 (Internal Server Error)} if the managerData couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
+    @PreAuthorize("@permissionService.hasManagerDataRwAccess(#managerData)")
     @PutMapping("/manager-data")
     public ResponseEntity<ManagerData> updateManagerData(@RequestBody ManagerData managerData) throws URISyntaxException {
         log.debug("REST request to update ManagerData : {}", managerData);
@@ -98,6 +106,8 @@ public class ManagerDataResource {
     @GetMapping("/manager-data")
     public ResponseEntity<List<ManagerData>> getAllManagerData(ManagerDataCriteria criteria, Pageable pageable) {
         log.debug("REST request to get ManagerData by criteria: {}", criteria);
+        criteria = permissionService.limitAccess(criteria);
+        log.debug("criteria after limit access: {}", criteria);
         Page<ManagerData> page = managerDataQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -112,6 +122,8 @@ public class ManagerDataResource {
     @GetMapping("/manager-data/count")
     public ResponseEntity<Long> countManagerData(ManagerDataCriteria criteria) {
         log.debug("REST request to count ManagerData by criteria: {}", criteria);
+        criteria = permissionService.limitAccess(criteria);
+        log.debug("criteria after limit access: {}", criteria);
         return ResponseEntity.ok().body(managerDataQueryService.countByCriteria(criteria));
     }
 
@@ -121,6 +133,7 @@ public class ManagerDataResource {
      * @param id the id of the managerData to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the managerData, or with status {@code 404 (Not Found)}.
      */
+    @PreAuthorize("@permissionService.hasManagerDataRoAccess(#id)")
     @GetMapping("/manager-data/{id}")
     public ResponseEntity<ManagerData> getManagerData(@PathVariable Long id) {
         log.debug("REST request to get ManagerData : {}", id);
@@ -134,6 +147,7 @@ public class ManagerDataResource {
      * @param id the id of the managerData to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
+    @PreAuthorize("@permissionService.hasManagerDataRwAccess(#id)")
     @DeleteMapping("/manager-data/{id}")
     public ResponseEntity<Void> deleteManagerData(@PathVariable Long id) {
         log.debug("REST request to delete ManagerData : {}", id);

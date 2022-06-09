@@ -1,0 +1,44 @@
+{
+  "name": "TemporaryAccess",
+  "fields": [
+    {
+      "fieldName": "login",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "permissionType",
+      "fieldType": "PermissionType",
+      "fieldValues": "RO,RW"
+    },
+    {
+      "fieldName": "role",
+      "fieldType": "Role",
+      "fieldValues": "ROLE_ADMIN,ROLE_MANAGER,ROLE_EXECUTOR"
+    },
+    {
+      "fieldName": "entityClass",
+      "fieldType": "EntityClass",
+      "fieldValues": "MANAGER_DATA,EXECUTOR_DATA"
+    },
+    {
+      "fieldName": "entityId",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20220609081450",
+  "entityTableName": "temporary_access",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

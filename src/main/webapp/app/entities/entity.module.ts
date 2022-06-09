@@ -12,6 +12,10 @@ import { RouterModule } from '@angular/router';
         path: 'executor-data',
         loadChildren: () => import('./executor-data/executor-data.module').then(m => m.ProviderExecutorDataModule),
       },
+      {
+        path: 'temporary-access',
+        loadChildren: () => import('./temporary-access/temporary-access.module').then(m => m.ProviderTemporaryAccessModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

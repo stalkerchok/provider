@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="temporaryAccess">
+            <h2><span jhiTranslate="providerApp.temporaryAccess.detail.title">Temporary Access</span> {{ temporaryAccess.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="providerApp.temporaryAccess.login">Login</span></dt>
+                <dd>
+                    <span>{{ temporaryAccess.login }}</span>
+                </dd>
+                <dt><span jhiTranslate="providerApp.temporaryAccess.endDate">End Date</span></dt>
+                <dd>
+                    <span>{{ temporaryAccess.endDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="providerApp.temporaryAccess.permissionType">Permission Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'providerApp.PermissionType.' + temporaryAccess.permissionType }}">{{ temporaryAccess.permissionType }}</span>
+                </dd>
+                <dt><span jhiTranslate="providerApp.temporaryAccess.role">Role</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'providerApp.Role.' + temporaryAccess.role }}">{{ temporaryAccess.role }}</span>
+                </dd>
+                <dt><span jhiTranslate="providerApp.temporaryAccess.entityClass">Entity Class</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'providerApp.EntityClass.' + temporaryAccess.entityClass }}">{{ temporaryAccess.entityClass }}</span>
+                </dd>
+                <dt><span jhiTranslate="providerApp.temporaryAccess.entityId">Entity Id</span></dt>
+                <dd>
+                    <span>{{ temporaryAccess.entityId }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/temporary-access', temporaryAccess.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

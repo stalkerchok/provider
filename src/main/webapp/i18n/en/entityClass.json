@@ -1,0 +1,9 @@
+{
+  "providerApp": {
+    "EntityClass": {
+      "null": "",
+      "MANAGER_DATA": "MANAGER_DATA",
+      "EXECUTOR_DATA": "EXECUTOR_DATA"
+    }
+  }
+}
