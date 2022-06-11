@@ -9,6 +9,7 @@
         "main": "Сущности",
         "managerData": "Manager Data",
         "executorData": "Executor Data",
+        "temporaryAccess": "Temporary Access",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -23,7 +24,6 @@
       "admin": {
         "main": "Администрирование",
         "userManagement": "Управление пользователями",
-        "temporaryAccess": "Временный доступ",
         "tracker": "Трекер польз.",
         "metrics": "Метрики",
         "health": "Состояние",

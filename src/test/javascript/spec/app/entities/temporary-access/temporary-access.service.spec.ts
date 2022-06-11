@@ -2,7 +2,7 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import * as moment from 'moment';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
-import { TemporaryAccessService } from 'app/admin/temporary-access/temporary-access.service';
+import { TemporaryAccessService } from 'app/entities/temporary-access/temporary-access.service';
 import { ITemporaryAccess, TemporaryAccess } from 'app/shared/model/temporary-access.model';
 import { PermissionType } from 'app/shared/model/enumerations/permission-type.model';
 import { EntityClass } from 'app/shared/model/enumerations/entity-class.model';

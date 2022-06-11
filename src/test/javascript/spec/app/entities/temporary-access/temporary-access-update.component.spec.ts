@@ -4,8 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { of } from 'rxjs';
 
 import { ProviderTestModule } from '../../../test.module';
-import { TemporaryAccessUpdateComponent } from 'app/admin/temporary-access/temporary-access-update.component';
-import { TemporaryAccessService } from 'app/admin/temporary-access/temporary-access.service';
+import { TemporaryAccessUpdateComponent } from 'app/entities/temporary-access/temporary-access-update.component';
+import { TemporaryAccessService } from 'app/entities/temporary-access/temporary-access.service';
 import { TemporaryAccess } from 'app/shared/model/temporary-access.model';
 
 describe('Component Tests', () => {

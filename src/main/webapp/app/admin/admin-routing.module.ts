@@ -37,10 +37,6 @@ import { RouterModule } from '@angular/router';
         path: 'metrics',
         loadChildren: () => import('./metrics/metrics.module').then(m => m.MetricsModule),
       },
-      {
-        path: 'temporary-access',
-        loadChildren: () => import('./temporary-access/temporary-access.module').then(m => m.ProviderTemporaryAccessModule),
-      },
       /* jhipster-needle-add-admin-route - JHipster will add admin routes here */
     ]),
   ],
